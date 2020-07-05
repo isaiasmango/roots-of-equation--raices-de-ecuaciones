@@ -1,0 +1,48 @@
+program roots_of_quadratic_equation
+real :: a, b, c, delta
+complex :: x1, x2
+print*, "Quadratic equation (Ecuación cuadrática)"
+print*, "a*x**2 + b*x + c = 0"
+print*, "Type the value of a (Tipee el valor de a)" 
+read*, a
+print*, "Type the value of a (Tipee el valor de b)"
+read*, b
+print*, "Type the value of a (Tipee el valor de c)"
+read*, c
+
+delta = b**2 - 4*a*c
+
+if (a /= 0) then
+  if (delta >= 0) then
+    if (delta > 0) then 
+        x1 = (-b+sqrt(delta))/(2*a)
+        x2 = (-b-sqrt(delta))/(2*a)
+        print*, "1. Are two different real roots. (Son dos raíces reales distintas)"
+        print*, "2. The roots are (Las raíces son)", real(x1), "and (y)", real(x2)
+    else !(delta = 0)
+        x1 = (-b+sqrt(delta))/(2*a)
+        x2 = x1
+        print*, "1. The equation has a real root of multiplicity two. (La ecuación tiene una raíz real de mutiplicidad dos.)"
+        print*, "2. The equation is a perfect square trinomial. (La ecuación es un trinomio cuadrado perfecto.)"
+        print*, "3. The roots of multiplicity two is (La raíz de multiplicidad dos es)", real(x1)
+    end if
+  else !(delta < 0)
+    x1 = cmplx(-b/(2*a), sqrt(-delta)/(2*a))
+    x2 = cmplx(-b/(2*a), -sqrt(-delta)/(2*a))
+    print*, "1. There aren't any real roots. (No hay ninguna raíz real)."
+    print*, "2. The roots are complex. (las raíces son complejas.)"
+    print*, "3. The roots are [las raíces son]", x1, "and [y]", x2
+  end if
+else !(a = 0)
+  if (b /= 0) then 
+    x1 = -c/b 
+    print*, "1. The equation isn't quadratic. (La ecuación no es cuadrática.)"
+    print*, "2. There is only one root. (Solo existe una raiz.)" 
+    print*, "3. The only root is real. (La única raiz es real)."
+    print*, "4. The root is (La raíz es)", real(x1)
+  else !(b = 0)
+    print*, "The equation is neither quadratic nor lineal. (La ecuación no es cuadrática ni lineal.)"
+  end if 
+end if 
+
+end program 
